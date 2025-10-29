@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 import com.bkap.qlks.service.CustomUserDetailService;
@@ -19,6 +20,10 @@ public class SercurityConfig {
 	@Autowired
 	private CustomUserDetailService customUserDetailService;
 	
+	@Bean 
+	BCryptPasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.csrf(csrf -> csrf.disable()).authorizeHttpRequests((auth) -> auth.
@@ -32,6 +37,14 @@ public class SercurityConfig {
 	}
 	@Bean
 	WebSecurityCustomizer webSecurityCustomizer () {
-		return (web) -> web.debug(true).ignoring().requestMatchers("/static/**");
+		 return (web) -> web.ignoring().requestMatchers(
+		            "/static/**",
+		            "/css/**",
+		            "/js/**",
+		            "/images/**",
+		            "/fonts/**",
+		            "/vendor/**",
+		            "/bootstrap/**"
+		        );
 	}
 }
