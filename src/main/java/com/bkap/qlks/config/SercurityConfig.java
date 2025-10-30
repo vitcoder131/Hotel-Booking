@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -28,11 +29,16 @@ public class SercurityConfig {
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.csrf(csrf -> csrf.disable()).authorizeHttpRequests((auth) -> auth.
 				requestMatchers("/*").permitAll().
+				requestMatchers("/details/**").permitAll().
 				requestMatchers("/admin/**").hasAuthority("ADMIN").
-				anyRequest().authenticated()).formLogin(login -> login.loginPage("/login").loginProcessingUrl("/login").
+				anyRequest().authenticated())
+		.formLogin(login -> login.loginPage("/login").loginProcessingUrl("/login").
 						usernameParameter("accountId").passwordParameter("password").
-						defaultSuccessUrl("/admin",true));
-		
+						defaultSuccessUrl("/admin",true)).logout(logout ->logout.logoutUrl("/logout").logoutSuccessUrl("/login"))
+		.formLogin(login -> login.loginPage("/login").loginProcessingUrl("/login").
+				usernameParameter("accountId").passwordParameter("password").
+				defaultSuccessUrl("/",true)).logout(logout ->logout.logoutUrl("/logout").logoutSuccessUrl("/"));
+
 		return http.build(); 
 	}
 	@Bean
