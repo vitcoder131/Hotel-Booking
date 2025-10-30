@@ -31,5 +31,8 @@ public class Account {
 	private String role;	
 	@OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
 	private Set<UserRole> userRole;
+	@OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
+	private Set<News> news;
+	
 	
 }

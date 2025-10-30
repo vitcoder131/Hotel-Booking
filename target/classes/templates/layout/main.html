@@ -218,14 +218,14 @@ body {
 							></span>
 					</a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="#"> <i
+							<li><a class="dropdown-item" th:href="@{/tcn}"> <i
 									class="fas fa-user-circle me-2"></i>Trang cá nhân
 							</a></li>
-							<li><a class="dropdown-item" href="#">
+							<li><a class="dropdown-item" th:href="@{/histo}">
 									<i class="fas fa-history me-2"></i>Lịch sử đặt phòng
 							</a></li>
 							<li ><a
-								class="dropdown-item" href="#"> <i
+								class="dropdown-item" th:href="@{/admin}"> <i
 									class="fas fa-cog me-2"></i>Quản trị
 							</a></li>
 							<li><hr class="dropdown-divider"></li>
@@ -257,7 +257,7 @@ body {
 	<!-- Main Content -->
 	<main layout:fragment="content">
 		<div class="container">
-			<h1>Content will be replaced</h1>
+			
 		</div>
 	</main>
 

@@ -1,9 +1,7 @@
 gửi mail liên hệ.
-blog
-đăng ký đăng nhập 
-thông tin user
-lịch sử đặt phòng
-
+tin tức-thêm xóa 
+thông tin user-sửa thông tin
+lịch sử đặt phòng-trong đó có thông tin và hủy đặt phòng
 
 Drop table bkap_account;
 drop table bkap_room;
