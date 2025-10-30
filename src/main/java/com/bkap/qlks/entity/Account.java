@@ -24,6 +24,7 @@ public class Account {
 	@Id
 	private String accountId;
 	private String password;
+	private String full_name;
 	private Integer gender;
 	private String phone;
 	private String email;

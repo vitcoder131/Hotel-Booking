@@ -16,5 +16,16 @@ public class UserServiceIplm implements UserService{
 		// TODO Auto-generated method stub
 		return userRepository.findByAccountId(accountId);
 	}
+	@Override
+	public Boolean create(Account account) {
+		// TODO Auto-generated method stub
+		try {
+			this.userRepository.save(account);
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return false;
+	}
 
 }
